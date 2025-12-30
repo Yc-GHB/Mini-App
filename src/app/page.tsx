@@ -34,6 +34,11 @@ export default function Home() {
             </Cell>
           </Link>
         </Section>
+        <Section header="Reown AppKit">
+          <div style={{ padding: 20 }}>
+            <appkit-button />
+          </div>
+        </Section>
         <Section
           header="Application Launch Data"
           footer="These pages help developer to learn more about current launch information"

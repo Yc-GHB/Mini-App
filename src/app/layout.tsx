@@ -1,6 +1,9 @@
 import type { PropsWithChildren } from 'react';
 import type { Metadata } from 'next';
 import { getLocale } from 'next-intl/server';
+import { headers } from 'next/headers';
+
+import { AppKitProvider } from '@/components/Web3Provider/AppKitProvider';
 
 import { Root } from '@/components/Root/Root';
 import { I18nProvider } from '@/core/i18n/provider';
@@ -16,12 +19,15 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   const locale = await getLocale();
+  const cookies = (await headers()).get('cookie');
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
         <I18nProvider>
-          <Root>{children}</Root>
+          <AppKitProvider cookies={cookies}>
+            <Root>{children}</Root>
+          </AppKitProvider>
         </I18nProvider>
       </body>
     </html>
