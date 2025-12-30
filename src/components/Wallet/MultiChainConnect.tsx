@@ -1,8 +1,5 @@
-'use client';
-
 import { TonConnectButton } from '@tonconnect/ui-react';
 import { ConnectButton as SuiConnectButton } from '@mysten/dapp-kit';
-import { ConnectButton as RainbowConnectButton } from '@rainbow-me/rainbowkit';
 import { Button, List, Section, Cell } from '@telegram-apps/telegram-ui';
 
 export function MultiChainConnect() {
@@ -25,7 +22,8 @@ export function MultiChainConnect() {
             <Section header="EVM Networks (ETH, BSC)">
                 <Cell>
                     <div className="evm-connect-wrapper">
-                        <RainbowConnectButton />
+                        {/* @ts-ignore */}
+                        <appkit-button />
                     </div>
                 </Cell>
             </Section>
