@@ -6,11 +6,13 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/components/Link/Link';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher/LocaleSwitcher';
 import { Page } from '@/components/Page';
+import { useAppKit } from '@reown/appkit/react';
 
 import tonSvg from './_assets/ton.svg';
 
 export default function Home() {
   const t = useTranslations('i18n');
+  const { open } = useAppKit();
 
   return (
     <Page back={false}>
@@ -34,11 +36,6 @@ export default function Home() {
             </Cell>
           </Link>
         </Section>
-        <Section header="Reown AppKit">
-          <div style={{ padding: 20 }}>
-            <appkit-button />
-          </div>
-        </Section>
         <Section
           header="Application Launch Data"
           footer="These pages help developer to learn more about current launch information"
@@ -61,6 +58,11 @@ export default function Home() {
         </Section>
         <Section header={t('header')} footer={t('footer')}>
           <LocaleSwitcher />
+        </Section>
+        <Section header="Reown AppKit" footer="Connect your AppKit wallet">
+          <Cell onClick={() => open()} subtitle="Connect with Wagmi & AppKit">
+            Connect Wallet
+          </Cell>
         </Section>
       </List>
     </Page>

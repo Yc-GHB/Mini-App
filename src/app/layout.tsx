@@ -1,12 +1,12 @@
 import type { PropsWithChildren } from 'react';
 import type { Metadata } from 'next';
 import { getLocale } from 'next-intl/server';
-import { headers } from 'next/headers';
 
-import { AppKitProvider } from '@/components/Web3Provider/AppKitProvider';
+import { headers } from 'next/headers';
 
 import { Root } from '@/components/Root/Root';
 import { I18nProvider } from '@/core/i18n/provider';
+import Web3Provider from '@/context/Web3Provider';
 
 import '@telegram-apps/telegram-ui/dist/styles.css';
 import 'normalize.css/normalize.css';
@@ -25,9 +25,9 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     <html lang={locale} suppressHydrationWarning>
       <body>
         <I18nProvider>
-          <AppKitProvider cookies={cookies}>
+          <Web3Provider cookies={cookies}>
             <Root>{children}</Root>
-          </AppKitProvider>
+          </Web3Provider>
         </I18nProvider>
       </body>
     </html>
