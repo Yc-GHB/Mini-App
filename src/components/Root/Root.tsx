@@ -7,9 +7,9 @@ import {
   useLaunchParams,
   useSignal,
 } from '@tma.js/sdk-react';
-import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { AppRoot } from '@telegram-apps/telegram-ui';
 
+import { UnifiedWeb3Provider } from '@/components/Web3Provider/UnifiedWeb3Provider';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { ErrorPage } from '@/components/ErrorPage';
 import { useDidMount } from '@/hooks/useDidMount';
@@ -29,16 +29,14 @@ function RootInner({ children }: PropsWithChildren) {
   }, [initDataUser]);
 
   return (
-    <TonConnectUIProvider manifestUrl="/tonconnect-manifest.json">
-      <AppRoot
-        appearance={isDark ? 'dark' : 'light'}
-        platform={
-          ['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'
-        }
-      >
-        {children}
-      </AppRoot>
-    </TonConnectUIProvider>
+    <AppRoot
+      appearance={isDark ? 'dark' : 'light'}
+      platform={
+        ['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'
+      }
+    >
+      {children}
+    </AppRoot>
   );
 }
 
@@ -50,7 +48,9 @@ export function Root(props: PropsWithChildren) {
 
   return didMount ? (
     <ErrorBoundary fallback={ErrorPage}>
-      <RootInner {...props} />
+      <UnifiedWeb3Provider>
+        <RootInner {...props} />
+      </UnifiedWeb3Provider>
     </ErrorBoundary>
   ) : (
     <div className="root__loading">Loading</div>
