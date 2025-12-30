@@ -3,6 +3,7 @@
 import { Section, Cell, Image, List } from '@telegram-apps/telegram-ui';
 import { useTranslations } from 'next-intl';
 
+import { MultiChainConnect } from '@/components/Wallet/MultiChainConnect';
 import { Link } from '@/components/Link/Link';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher/LocaleSwitcher';
 import { Page } from '@/components/Page';
@@ -14,6 +15,7 @@ export default function Home() {
 
   return (
     <Page back={false}>
+      <MultiChainConnect />
       <List>
         <Section
           header="Features"
