@@ -1,15 +1,9 @@
-import { http, createConfig } from 'wagmi'
-import { mainnet, bsc, sepolia } from 'wagmi/chains'
-import { injected } from 'wagmi/connectors'
+import { getDefaultConfig } from '@rainbow-me/rainbowkit';
+import { mainnet, bsc, sepolia } from 'wagmi/chains';
 
-export const wagmiConfig = createConfig({
+export const wagmiConfig = getDefaultConfig({
+  appName: 'Mini App',
+  projectId: 'be81b1f73b7c7618c87bbda75004c0a7', 
   chains: [mainnet, bsc, sepolia],
-  transports: {
-    [mainnet.id]: http(),
-    [bsc.id]: http(),
-    [sepolia.id]: http(),
-  },
-  connectors: [
-    injected(),
-  ],
-})
+  ssr: true,
+});
