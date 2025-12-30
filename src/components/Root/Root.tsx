@@ -9,7 +9,6 @@ import {
 } from '@tma.js/sdk-react';
 import { AppRoot } from '@telegram-apps/telegram-ui';
 
-import { UnifiedWeb3Provider } from '@/components/Web3Provider/UnifiedWeb3Provider';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { ErrorPage } from '@/components/ErrorPage';
 import { useDidMount } from '@/hooks/useDidMount';
@@ -48,9 +47,7 @@ export function Root(props: PropsWithChildren) {
 
   return didMount ? (
     <ErrorBoundary fallback={ErrorPage}>
-      <UnifiedWeb3Provider>
-        <RootInner {...props} />
-      </UnifiedWeb3Provider>
+      <RootInner {...props} />
     </ErrorBoundary>
   ) : (
     <div className="root__loading">Loading</div>
